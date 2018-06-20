@@ -1,6 +1,8 @@
 import React from 'react';
 import HomePage from './Pages/HomePage/HomePage';
 import NotFoundPage from './Pages/NotFoundPage/NotFoundPage';
+import ProductListPage from './Pages/ProductListPage/ProductListPage';
+import ProductActionContainer from './Containers/ProductActionContainer';
 
 
 const routes = [
@@ -10,15 +12,26 @@ const routes = [
         main : () => <HomePage />
     },
     {
-        path: '/ProductList',
+        path: '/Product-List',
         exact: true,
-        main : () => <HomePage />
+        main : () => <ProductListPage />
+    },
+    {   
+        path: '/product/add',
+        exact: false,
+        main : () => <ProductActionContainer />
+    },
+    {   
+        path: '/product/:id/edit',
+        exact: false,
+        main : ({match}) => <ProductActionContainer match = {match}/>
     },
     {
         path: '',
         exact: false,
         main : () => <NotFoundPage />
     }
+
 ];
 
 export default routes;
