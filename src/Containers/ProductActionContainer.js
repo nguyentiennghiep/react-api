@@ -6,13 +6,18 @@ import ProductActionPage from '../Pages/ProductActionPage/ProductActionPage';
 class ProductActionContainer extends Component {
 
     onSubmit = (product) => {
-        this.props.addProductRequest(product);
+        if (product.id) {
+            this.props.updateProductLocal(product);
+        }
+        else {
+            this.props.addProductRequest(product);
+        }
     }
 
     render() {
         return (
             <div>
-                <ProductActionPage onSubmit={this.onSubmit}  data = {this.props.match} />
+                <ProductActionPage onSubmit={this.onSubmit} data={this.props.match} updateProduct={this.props.updateProduct} />
             </div>
         );
     }
@@ -20,7 +25,7 @@ class ProductActionContainer extends Component {
 
 const mapStateToProps = state => {
     return {
-
+        updateProduct: state.updateProduct
     }
 }
 
@@ -28,6 +33,9 @@ const mapDispatchToProps = (dispatch, props) => {
     return {
         addProductRequest: (product) => {
             dispatch(actions.addProductRequest(product))
+        },
+        updateProductLocal: (product) => {
+            dispatch(actions.onUpdateRequest(product))
         }
     }
 }

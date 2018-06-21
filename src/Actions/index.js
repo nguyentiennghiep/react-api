@@ -46,3 +46,26 @@ export const addProduct = (product) => {
         product
     }
 }
+
+export const onUpdateRequest = (product) =>{
+    return (dispatch) =>{
+        return callApi(`products/${product.id}`,'PUT',product).then(res =>{
+            dispatch(onUpdateLocal(res.data));
+        })
+    }
+}
+
+export const onUpdateLocal = (product) => {
+    return {
+        type :types.UPDATE_PRODUCT_LOCAL,
+        product
+    }
+}
+
+
+export const onUpdate = (product) => {
+    return {
+        type :types.UPDATE_PRODUCT,
+        product
+    }
+}

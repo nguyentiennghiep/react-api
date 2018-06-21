@@ -19,7 +19,7 @@ const routes = [
     {   
         path: '/product/add',
         exact: false,
-        main : () => <ProductActionContainer />
+        main : ({match}) => <ProductActionContainer match = {match}/>
     },
     {   
         path: '/product/:id/edit',

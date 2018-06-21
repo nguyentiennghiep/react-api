@@ -20,6 +20,7 @@ var products = (state = initialState, action) => {
             return [...state];
         }
         case types.ADD_PRODUCT: {
+            
             state.push(action.product);
             return [...state];
         }
@@ -27,10 +28,17 @@ var products = (state = initialState, action) => {
             {
                 index = findIndex(state, action.product);
                 if (index !== -1) {
-                    state.splice(index,1)
+                    state.splice(index,1);
                 }
                 return [...state];
             }
+        case types.UPDATE_PRODUCT_LOCAL : {
+            index = findIndex(state, action.product);
+            if (index !== -1) {
+                state[index] = action.product;
+            }
+            return [...state];
+        }
         default: return [...state];
     }
 }

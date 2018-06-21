@@ -14,6 +14,7 @@ class ProductContainer extends Component {
 
 
 
+
     showProductItem = (products) => {
         var result = null;
         if (products.length > 0) {
@@ -23,7 +24,7 @@ class ProductContainer extends Component {
                     index={index}
                     onDelete = {this.onDelete}
                     onUpdate = {this.onUpdate}
-                    match = {this.props.match}
+                   
                 />
             })
         }
@@ -32,10 +33,11 @@ class ProductContainer extends Component {
 
     onDelete = (data) =>{
         this.props.deleteProduct(data);  
+        
     }
 
     onUpdate = (product) =>{
-       
+        this.props.updateProduct(product);
     }
 
     render() {
@@ -63,6 +65,9 @@ const mapDispatchToProps = (dispatch,props) =>{
         },
         deleteProduct : (product) =>{
             dispatch(actions.deleteProductRequest(product))
+        },
+        updateProduct : (product) =>{
+            dispatch(actions.onUpdate(product))
         }
     }
 }
